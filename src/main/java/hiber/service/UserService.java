@@ -1,5 +1,6 @@
 package hiber.service;
 
+import hiber.model.Car;
 import hiber.model.User;
 
 import java.util.List;
@@ -9,4 +10,6 @@ public interface UserService {
 
 //    void set(User user);
     List<User> listUsers();
+
+    List<User> getUsers(Car car);
 }

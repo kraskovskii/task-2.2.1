@@ -12,28 +12,26 @@ import java.util.List;
 @Service
 public class UserServiceImp implements UserService {
 
-   @Autowired
-   private UserDao userDao;
+    @Autowired
+    private UserDao userDao;
 
-   @Transactional
-   @Override
-   public void add(User user) {
-      userDao.add(user);
-   }
+    @Transactional
+    @Override
+    public void add(User user) {
+        userDao.add(user);
+    }
 
 
+    @Transactional
+    @Override
+    public List<User> getUsers(Car car) {
+        return userDao.getUsers(car);
+    }
 
-//   @Transactional
-//   @Override
-//
-//   public void get(String name){
-//      userDao
-//   }
-
-   @Transactional(readOnly = true)
-   @Override
-   public List<User> listUsers() {
-      return userDao.listUsers();
-   }
+    @Transactional(readOnly = true)
+    @Override
+    public List<User> listUsers() {
+        return userDao.listUsers();
+    }
 
 }
