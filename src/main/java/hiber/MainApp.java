@@ -3,7 +3,6 @@ package hiber;
 import hiber.config.AppConfig;
 import hiber.model.Car;
 import hiber.model.User;
-import hiber.service.CarService;
 import hiber.service.UserService;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
@@ -16,33 +15,15 @@ public class MainApp {
                 new AnnotationConfigApplicationContext(AppConfig.class);
 
         UserService userService = context.getBean(UserService.class);
-        CarService carService = context.getBean(CarService.class);
 
-
-        Car car1 = new Car("VAZ", 1);
-        Car car2 = new Car("Opel", 12);
-        Car car3 = new Car("Reno", 123);
-        Car car4 = new Car("Mercedes", 1234);
-
-        carService.add(car1);
-        carService.add(car2);
-        carService.add(car3);
-        carService.add(car4);
-
-        User user1 = new User("User1", "Lastname1", "user1@mail.ru");
-        User user2 = new User("User2", "Lastname2", "user2@mail.ru");
-        User user3 = new User("User3", "Lastname3", "user3@mail.ru");
-        User user4 = new User("User4", "Lastname4", "user4@mail.ru");
-
-        user1.setCar(car1);
-        user2.setCar(car2);
-        user3.setCar(car3);
-        user4.setCar(car4);
-
-        userService.add(user1);
-        userService.add(user2);
-        userService.add(user3);
-        userService.add(user4);
+        userService.add(new User("User1", "Lastname1", "user1@mail.ru",
+                new Car("VAZ", 1)));
+        userService.add(new User("User2", "Lastname2", "user2@mail.ru",
+                new Car("Opel", 12)));
+        userService.add(new User("User3", "Lastname3", "user3@mail.ru",
+                new Car("Reno", 123)));
+        userService.add(new User("User4", "Lastname4", "user4@mail.ru",
+                new Car("Mercedes", 1234)));
 
         List<User> users = userService.listUsers();
 
@@ -57,7 +38,7 @@ public class MainApp {
 
 //        5. В сервис добавьте метод, который с помощью hql-запроса будет доставать
 //        юзера, владеющего машиной по ее модели и серии.
-        System.out.println(userService.getUser(car1));
+      System.out.println(userService.getUser(new Car("VAZ", 1)));
 
         context.close();
     }
