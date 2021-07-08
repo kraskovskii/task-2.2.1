@@ -40,7 +40,7 @@ public class UserDaoImp implements UserDao {
             return (User) query.getSingleResult();
         }
         catch (NoResultException e) {
-            System.out.println("Users do not have a car" + car + " ");
+            System.out.println("Users don't have a car" + car + " ");
         }
         return null;
     }
