@@ -23,19 +23,17 @@ public class UserDaoImp implements UserDao {
     }
 
     @Override
-    @SuppressWarnings("unchecked")
     public List<User> listUsers() {
         Query query = sessionFactory.getCurrentSession().createQuery("from User");
         return query.getResultList();
     }
 
     @Override
-    public List<User> getUsers(Car car) {
+    public User getUser(Car car) {
+        User user;
         String hql = "From User users where users.car =: paramName";
         Query query = sessionFactory.openSession().createQuery(hql);
         query.setParameter("paramName", car);
-        return query.getResultList();
+        return (User) query.getSingleResult();
     }
-
-
 }

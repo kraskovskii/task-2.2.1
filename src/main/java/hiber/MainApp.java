@@ -19,22 +19,25 @@ public class MainApp {
         CarService carService = context.getBean(CarService.class);
 
 
-        carService.add(new Car("VAZ", 1));
-        carService.add(new Car("Opel", 12));
-        carService.add(new Car("Reno", 123));
-        carService.add(new Car("Mercedes", 1234));
-        List<Car> cars = carService.listCars();
+        Car car1 = new Car("VAZ", 1);
+        Car car2 = new Car("Opel", 12);
+        Car car3 = new Car("Reno", 123);
+        Car car4 = new Car("Mercedes", 1234);
 
+        carService.add(car1);
+        carService.add(car2);
+        carService.add(car3);
+        carService.add(car4);
 
         User user1 = new User("User1", "Lastname1", "user1@mail.ru");
         User user2 = new User("User2", "Lastname2", "user2@mail.ru");
         User user3 = new User("User3", "Lastname3", "user3@mail.ru");
         User user4 = new User("User4", "Lastname4", "user4@mail.ru");
 
-        user1.setCar(cars.get(0));
-        user2.setCar(cars.get(1));
-        user3.setCar(cars.get(2));
-        user4.setCar(cars.get(3));
+        user1.setCar(car1);
+        user2.setCar(car2);
+        user3.setCar(car3);
+        user4.setCar(car4);
 
         userService.add(user1);
         userService.add(user2);
@@ -54,8 +57,8 @@ public class MainApp {
 
 //        5. В сервис добавьте метод, который с помощью hql-запроса будет доставать
 //        юзера, владеющего машиной по ее модели и серии.
+        System.out.println(userService.getUser(car1));
 
-        System.out.println(userService.getUsers(cars.get(1)));
         context.close();
     }
 }

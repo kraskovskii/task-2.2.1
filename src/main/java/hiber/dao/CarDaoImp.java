@@ -2,6 +2,7 @@ package hiber.dao;
 
 import hiber.model.Car;
 import org.hibernate.SessionFactory;
+import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -20,9 +21,8 @@ public class CarDaoImp implements CarDao {
     }
 
     @Override
-    @SuppressWarnings("unchecked")
     public List<Car> listCars() {
-        TypedQuery<Car> query = sessionFactory.getCurrentSession().createQuery("from Car");
+        Query query = sessionFactory.openSession().createQuery("from Car");
         return query.getResultList();
     }
 
